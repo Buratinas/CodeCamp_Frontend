@@ -12,7 +12,11 @@ namespace Appcamp_Frontend.DataModel
         public DataProvider()
         {
         }
-
+        private static string message;
+        public void Log(string msg)
+        {
+            message = msg;
+        }
         public int getCount()
         {
             return _aDataSource.Count();

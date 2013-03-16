@@ -16,7 +16,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Appcamp_Frontend.DataModel;
-// The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Xml;
 
 namespace Appcamp_Frontend
 {
@@ -30,7 +32,31 @@ namespace Appcamp_Frontend
         {
             this.InitializeComponent();
         }
+        public async void httpRequest(string sParams) 
+        {
+            //Task<string> sResponse;
+            try
+            {
+                var httpClient = new HttpClient();
+                var url = new Uri("http://codecamp/index.php?"+sParams);
+                var accessToken = "1234";
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+                
+                httpRequestMessage.Headers.Add(System.Net.HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", accessToken));
+                httpRequestMessage.Headers.Add("User-Agent", "My user-Agent");
+                var response = await httpClient.SendAsync(httpRequestMessage);
+                DataProvider dataProvider = new DataProvider();
+                string stream = await response.Content.ReadAsStringAsync();
+               
+                dataProvider.Log(stream);
+                //sResponse = response.ToString();
+            }
+            catch (Exception e)
+            {
 
+            }
+            //return await sResponse;
+        }
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -70,7 +96,7 @@ namespace Appcamp_Frontend
 
             dataProvider.setGroup(group);
             var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
-            
+            httpRequest("something");
             this.DefaultViewModel["Items"] = sampleDataGroups;
         }
 

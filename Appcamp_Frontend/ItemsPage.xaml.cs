@@ -48,18 +48,10 @@ namespace Appcamp_Frontend
                 var response = await httpClient.SendAsync(httpRequestMessage);
                 DataProvider dataProvider = new DataProvider();
                 
-                //string stream = await response.Content.ReadAsStringAsync();
                 var sStream = await response.Content.ReadAsStringAsync();
-                var stream = await response.Content.ReadAsStreamAsync();
-                using (var reader = XmlReader.Create(stream))
-                {
-                    var doc = XDocument.Load(reader);
-                    var fileElements = doc.Descendants("Note").ToArray();
-                    dataProvider.Log(doc.Document.ToString());
-                }
-                //var doc = XDocument.Parse(sStream);
-                //    var fileElements = doc.Descendants("Note").ToArray();
-                //dataProvider.Log(doc.Document.ToString());
+                var doc = XDocument.Parse(sStream);
+                dataProvider.readXmlNode(doc);
+
 
 
                 //sResponse = response.ToString();
@@ -68,7 +60,6 @@ namespace Appcamp_Frontend
             {
 
             }
-            //return await sResponse;
         }
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also

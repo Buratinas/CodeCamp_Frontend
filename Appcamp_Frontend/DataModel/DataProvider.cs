@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Appcamp_Frontend.Data;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Appcamp_Frontend.DataModel
 {
@@ -20,6 +22,23 @@ namespace Appcamp_Frontend.DataModel
         public int getCount()
         {
             return _aDataSource.Count();
+        }
+
+        public void readXmlNode(XDocument oDoc)
+        {
+            XElement[] Elements = oDoc.Descendants("story").ToArray();
+            string uid ,title, subtitle, imagepath, description;
+            foreach (XElement xe in Elements)
+            {
+                // TODO: add check to see if uid is actualy unique
+                uid = xe.Element("uid").Value.ToString();
+                title = xe.Element("title").Value.ToString();
+                subtitle = xe.Element("subtitle").Value.ToString();
+                imagepath = xe.Element("image").Value.ToString();
+                description = xe.Element("description").Value.ToString();
+                var group = new SampleDataGroup(uid, title, subtitle, imagepath, description);
+                this.setGroup(group);
+            }
         }
         //var group1 = dataProvider.getGroup(1);
         /*

@@ -138,7 +138,7 @@ namespace Appcamp_Frontend.Data
         {
             Items.CollectionChanged += ItemsCollectionChanged;
         }
-
+        
         private void ItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             // Provides a subset of the full items collection to bind to from a GroupedItemsPage
@@ -265,7 +265,7 @@ namespace Appcamp_Frontend.Data
                     "Group Title: 1",
                     "Group Subtitle: 1",
                     "Assets/DarkGray.png",
-                    "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
+                    "smaller to see where it is");
             group.Items.Add(new SampleDataItem("Group-1-Item-1",
                     "Item Title: 1",
                     "Item Subtitle: 1",

@@ -15,7 +15,13 @@ namespace Appcamp_Frontend.DataModel
         public DataProvider()
         {
         }
-        private static string message;
+        public static string message 
+        {
+            get { return message; }
+            private set { }
+        }
+
+        
         public void Log(string msg)
         {
             message = msg;
@@ -27,23 +33,34 @@ namespace Appcamp_Frontend.DataModel
 
         public static async void readData()
         {
-            //var localFolder = ApplicationData.Current.LocalFolder;
-            //try
-            //{
-            //    var status = localFolder.GetFileAsync("data.txt").GetResults();
+            var localFolder = ApplicationData.Current.LocalFolder;
+            try
+            {
+                var file = await localFolder.GetFileAsync("data.txt");
 
-            //}
-            //catch ( Exception e )
-            //{
-            //    var status = e.Message;
-            //}
-            //if (status.StartsWith)
-            //var file = await localFolder.CreateFileAsync("data.txt");
+                //var file = localFolder.GetFileAsync("data.txt");
 
+                var read = await FileIO.ReadTextAsync(file);
+                readXmlNode(XDocument.Parse(read));
+                message = "Success";
+                return;
+            }
+            catch ( Exception e )
+            {
+                message = e.Message;
+            }
+            try
+            {
+                var sFile = await localFolder.CreateFileAsync("data.txt");
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+            }
 
         }
 
-        public void readXmlNode(XDocument oDoc)
+        public static void readXmlNode(XDocument oDoc)
         {
             XElement[] Elements = oDoc.Descendants("story").ToArray();
             string uid ,title, subtitle, imagepath, description;
@@ -56,7 +73,7 @@ namespace Appcamp_Frontend.DataModel
                 imagepath = xe.Element("image").Value.ToString();
                 description = xe.Element("description").Value.ToString();
                 var group = new SampleDataGroup(uid, title, subtitle, imagepath, description);
-                this.setGroup(group);
+                //this.setGroup(group);
                 SampleDataSource.setGroup(group);
             }
         }

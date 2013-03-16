@@ -51,7 +51,8 @@ namespace Appcamp_Frontend
                 
                 var sStream = await response.Content.ReadAsStringAsync();
                 var doc = XDocument.Parse(sStream);
-                dataProvider.readXmlNode(doc);
+
+                DataProvider.readXmlNode(doc);
 
 
 

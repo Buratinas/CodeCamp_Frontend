@@ -241,6 +241,8 @@ namespace Appcamp_Frontend.Data
 
         public static void setGroup(SampleDataGroup group) 
         {
+            if (_sampleDataSource == null)
+                _sampleDataSource = new SampleDataSource();
             _sampleDataSource.AllGroups.Add(group);
         }
 
@@ -265,9 +267,10 @@ namespace Appcamp_Frontend.Data
 
             // this should load local data, cause it's executed once
             DataProvider.readData();
+            
             String ITEM_CONTENT = String.Format("Item Content: {0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}",
                         "Curabitur class aliquam vestibulum nam curae maecenas sed integer cras phasellus suspendisse quisque donec dis praesent accumsan bibendum pellentesque condimentum adipiscing etiam consequat vivamus dictumst aliquam duis convallis scelerisque est parturient ullamcorper aliquet fusce suspendisse nunc hac eleifend amet blandit facilisi condimentum commodo scelerisque faucibus aenean ullamcorper ante mauris dignissim consectetuer nullam lorem vestibulum habitant conubia elementum pellentesque morbi facilisis arcu sollicitudin diam cubilia aptent vestibulum auctor eget dapibus pellentesque inceptos leo egestas interdum nulla consectetuer suspendisse adipiscing pellentesque proin lobortis sollicitudin augue elit mus congue fermentum parturient fringilla euismod feugiat");
-    
+
             DataProvider dataProvider = new DataProvider();
             var group = new SampleDataGroup("Group-1",
                     "Group Title: 1",
@@ -292,15 +295,15 @@ namespace Appcamp_Frontend.Data
             dataProvider.setGroup(group);
             //var group1 = dataProvider.getGroup(1);
             // 
-            
-          //  dataProvider.getData();
+
+            //  dataProvider.getData();
             int iCount = dataProvider.getCount();
             if (iCount > 0)
             {
                 for (int i = 0; i < iCount; i++)
                 {
                     group = dataProvider.getGroup(i);
-                    
+
                     this.AllGroups.Add(group);
                 }
             }

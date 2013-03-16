@@ -16,10 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Appcamp_Frontend.DataModel;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
+
 
 namespace Appcamp_Frontend
 {
@@ -34,35 +31,7 @@ namespace Appcamp_Frontend
             this.InitializeComponent();
           
         }
-        public async void httpRequest(string sParams) 
-        {
-            //Task<string> sResponse;
-            try
-            {
-                var httpClient = new HttpClient();
-                var url = new Uri("http://codecamp/index.php?"+sParams);
-                var accessToken = "1234";
-                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                
-                httpRequestMessage.Headers.Add(System.Net.HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", accessToken));
-                httpRequestMessage.Headers.Add("User-Agent", "My user-Agent");
-                var response = await httpClient.SendAsync(httpRequestMessage);
-                DataProvider dataProvider = new DataProvider();
-                
-                var sStream = await response.Content.ReadAsStringAsync();
-                var doc = XDocument.Parse(sStream);
-
-                DataProvider.readXmlNode(doc);
-
-
-
-                //sResponse = response.ToString();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
+        
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -103,7 +72,7 @@ namespace Appcamp_Frontend
             dataProvider.setGroup(group);
             //httpRequest to fetch all data
             //httpRequest("titles");
-            httpRequest("something");
+            dataProvider.httpRequest("something");
             
             var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             

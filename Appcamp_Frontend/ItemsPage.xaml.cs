@@ -32,6 +32,7 @@ namespace Appcamp_Frontend
         public ItemsPage()
         {
             this.InitializeComponent();
+          
         }
         public async void httpRequest(string sParams) 
         {
@@ -70,7 +71,7 @@ namespace Appcamp_Frontend
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             // TODO: Add dynamic data here
@@ -99,8 +100,12 @@ namespace Appcamp_Frontend
                     group));
 
             dataProvider.setGroup(group);
-            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
+            //httpRequest to fetch all data
+            //httpRequest("titles");
             httpRequest("something");
+            
+            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
+            
             this.DefaultViewModel["Items"] = sampleDataGroups;
         }
 

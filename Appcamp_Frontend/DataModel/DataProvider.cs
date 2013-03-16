@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Appcamp_Frontend.Data;
 using System.Xml;
 using System.Xml.Linq;
+using Windows.Storage;
 
 namespace Appcamp_Frontend.DataModel
 {
@@ -24,6 +25,24 @@ namespace Appcamp_Frontend.DataModel
             return _aDataSource.Count();
         }
 
+        public static async void readData()
+        {
+            //var localFolder = ApplicationData.Current.LocalFolder;
+            //try
+            //{
+            //    var status = localFolder.GetFileAsync("data.txt").GetResults();
+
+            //}
+            //catch ( Exception e )
+            //{
+            //    var status = e.Message;
+            //}
+            //if (status.StartsWith)
+            //var file = await localFolder.CreateFileAsync("data.txt");
+
+
+        }
+
         public void readXmlNode(XDocument oDoc)
         {
             XElement[] Elements = oDoc.Descendants("story").ToArray();
@@ -38,6 +57,7 @@ namespace Appcamp_Frontend.DataModel
                 description = xe.Element("description").Value.ToString();
                 var group = new SampleDataGroup(uid, title, subtitle, imagepath, description);
                 this.setGroup(group);
+                SampleDataSource.setGroup(group);
             }
         }
         //var group1 = dataProvider.getGroup(1);

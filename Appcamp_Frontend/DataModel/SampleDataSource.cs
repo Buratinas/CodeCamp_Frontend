@@ -239,6 +239,11 @@ namespace Appcamp_Frontend.Data
             return _sampleDataSource.AllGroups;
         }
 
+        public static void setGroup(SampleDataGroup group) 
+        {
+            _sampleDataSource.AllGroups.Add(group);
+        }
+
         public static SampleDataGroup GetGroup(string uniqueId)
         {
             // Simple linear search is acceptable for small data sets
@@ -257,6 +262,9 @@ namespace Appcamp_Frontend.Data
 
         public SampleDataSource()
         {
+
+            // this should load local data, cause it's executed once
+            DataProvider.readData();
             String ITEM_CONTENT = String.Format("Item Content: {0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}",
                         "Curabitur class aliquam vestibulum nam curae maecenas sed integer cras phasellus suspendisse quisque donec dis praesent accumsan bibendum pellentesque condimentum adipiscing etiam consequat vivamus dictumst aliquam duis convallis scelerisque est parturient ullamcorper aliquet fusce suspendisse nunc hac eleifend amet blandit facilisi condimentum commodo scelerisque faucibus aenean ullamcorper ante mauris dignissim consectetuer nullam lorem vestibulum habitant conubia elementum pellentesque morbi facilisis arcu sollicitudin diam cubilia aptent vestibulum auctor eget dapibus pellentesque inceptos leo egestas interdum nulla consectetuer suspendisse adipiscing pellentesque proin lobortis sollicitudin augue elit mus congue fermentum parturient fringilla euismod feugiat");
     

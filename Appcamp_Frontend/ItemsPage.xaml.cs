@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Appcamp_Frontend.DataModel;
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
 namespace Appcamp_Frontend
@@ -43,7 +43,34 @@ namespace Appcamp_Frontend
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
+            // TODO: Add dynamic data here
+            DataProvider dataProvider = new DataProvider();
+
+            String ITEM_CONTENT = String.Format("Item Content: {0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}",
+                       "Curabitur class aliquam vestibulum nam curae maecenas sed integer cras phasellus suspendisse quisque donec dis praesent accumsan bibendum pellentesque condimentum adipiscing etiam consequat vivamus dictumst aliquam duis convallis scelerisque est parturient ullamcorper aliquet fusce suspendisse nunc hac eleifend amet blandit facilisi condimentum commodo scelerisque faucibus aenean ullamcorper ante mauris dignissim consectetuer nullam lorem vestibulum habitant conubia elementum pellentesque morbi facilisis arcu sollicitudin diam cubilia aptent vestibulum auctor eget dapibus pellentesque inceptos leo egestas interdum nulla consectetuer suspendisse adipiscing pellentesque proin lobortis sollicitudin augue elit mus congue fermentum parturient fringilla euismod feugiat");
+            var group = new SampleDataGroup("Awesome group",
+                    "Group Title: 1",
+                    "Group Subtitle: 1",
+                    "Assets/DarkGray.png",
+                    "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
+            group.Items.Add(new SampleDataItem("Group-1-Item-1",
+                    "Item Title: 1",
+                    "Item Subtitle: 1",
+                    "Assets/LightGray.png",
+                    "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
+                    ITEM_CONTENT,
+                    group));
+            group.Items.Add(new SampleDataItem("Group-1-Item-2",
+                    "Item Title: 2",
+                    "Item Subtitle: 2",
+                    "Assets/DarkGray.png",
+                    "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
+                    ITEM_CONTENT,
+                    group));
+
+            dataProvider.setGroup(group);
             var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
+            
             this.DefaultViewModel["Items"] = sampleDataGroups;
         }
 

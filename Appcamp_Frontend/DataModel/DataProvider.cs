@@ -7,16 +7,22 @@ using Appcamp_Frontend.Data;
 
 namespace Appcamp_Frontend.DataModel
 {
-    public class DataProvider
+    public sealed class DataProvider
     {
+        public DataProvider()
+        {
+        }
+
+        public int getCount()
+        {
+            return _aDataSource.Count();
+        }
         //var group1 = dataProvider.getGroup(1);
         /*
          * simple dataSource
          */
-        private SampleDataSource[] _dataSource;
 
-        // current _dataSource element
-        private int _currentItem = 0;
+        private static List<SampleDataGroup> _aDataSource = new List<SampleDataGroup>();
         /**
          * returns group.
          * 
@@ -24,18 +30,18 @@ namespace Appcamp_Frontend.DataModel
          *  
          * @returns SampleDataSource
          */
-        public SampleDataSource getGroup(int iGroupNumber = 0)
+        public SampleDataGroup getGroup(int iGroupNumber = 0)
         {
-            return new SampleDataSource();
+            return _aDataSource.ElementAt<SampleDataGroup>(iGroupNumber);
         }
 
         /*
          * 
          * 
          */
-        public void setGroup(SampleDataSource oSource)
+        public void setGroup(SampleDataGroup oSource)
         {
-            this._dataSource[this._currentItem++] = oSource;
+            _aDataSource.Add(oSource);
         }
 
     }

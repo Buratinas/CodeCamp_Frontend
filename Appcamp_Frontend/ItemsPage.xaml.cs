@@ -19,6 +19,7 @@ using Appcamp_Frontend.DataModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Appcamp_Frontend
 {
@@ -46,9 +47,21 @@ namespace Appcamp_Frontend
                 httpRequestMessage.Headers.Add("User-Agent", "My user-Agent");
                 var response = await httpClient.SendAsync(httpRequestMessage);
                 DataProvider dataProvider = new DataProvider();
-                string stream = await response.Content.ReadAsStringAsync();
-               
-                dataProvider.Log(stream);
+                
+                //string stream = await response.Content.ReadAsStringAsync();
+                var sStream = await response.Content.ReadAsStringAsync();
+                var stream = await response.Content.ReadAsStreamAsync();
+                using (var reader = XmlReader.Create(stream))
+                {
+                    var doc = XDocument.Load(reader);
+                    var fileElements = doc.Descendants("Note").ToArray();
+                    dataProvider.Log(doc.Document.ToString());
+                }
+                //var doc = XDocument.Parse(sStream);
+                //    var fileElements = doc.Descendants("Note").ToArray();
+                //dataProvider.Log(doc.Document.ToString());
+
+
                 //sResponse = response.ToString();
             }
             catch (Exception e)

@@ -7,6 +7,9 @@ using Appcamp_Frontend.Data;
 using System.Xml;
 using System.Xml.Linq;
 using Windows.Storage;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Xml;
 
 namespace Appcamp_Frontend.DataModel
 {
@@ -22,10 +25,6 @@ namespace Appcamp_Frontend.DataModel
         }
 
         
-        public void Log(string msg)
-        {
-            message = msg;
-        }
         public int getCount()
         {
             return _aDataSource.Count();
@@ -103,6 +102,34 @@ namespace Appcamp_Frontend.DataModel
         {
             _aDataSource.Add(oSource);
         }
+        public async void httpRequest(string sParams)
+        {
+            //Task<string> sResponse;
+            try
+            {
+                var httpClient = new HttpClient();
+                var url = new Uri("http://codecamp/index.php?" + sParams);
+                var accessToken = "1234";
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 
+                httpRequestMessage.Headers.Add(System.Net.HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", accessToken));
+                httpRequestMessage.Headers.Add("User-Agent", "My user-Agent");
+                var response = await httpClient.SendAsync(httpRequestMessage);
+                DataProvider dataProvider = new DataProvider();
+
+                var sStream = await response.Content.ReadAsStringAsync();
+                var doc = XDocument.Parse(sStream);
+
+                DataProvider.readXmlNode(doc);
+
+
+
+                //sResponse = response.ToString();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
     }
 }

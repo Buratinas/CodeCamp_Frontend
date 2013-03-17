@@ -46,85 +46,109 @@
         </Grid.ColumnDefinitions>
 
         <!-- Back button and page title -->
-        <Grid x:Name="titlePanel" Grid.ColumnSpan="2" Margin="10,67,573,0" Height="73" VerticalAlignment="Top">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                   
-                    <GradientStop Color="#FF20C6D6" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button
+     
+        <!--<TextBlock x:Name="pageTitle" Style="{StaticResource PageHeaderTextStyle}" Text="Burbulo rikiavimo algortimas" Height="75" Margin="21,13,-25,0" FontSize="40" Grid.Column="1" VerticalAlignment="Top"/>-->
+
+        <!-- Vertical scrolling item list -->
+        
+        <Button
                 x:Name="backButton"
                 Click="GoBack"
                 IsEnabled="{Binding DefaultViewModel.CanGoBack, ElementName=pageRoot}"
                 Style="{StaticResource BackButtonStyle}" Margin="36,9,0,0" VerticalAlignment="Top"/>
-            <TextBlock x:Name="pageTitle" Style="{StaticResource PageHeaderTextStyle}" Text="Burbulo rikiavimo algortimas" Height="75" Margin="21,13,-25,0" FontSize="40" Grid.Column="1" VerticalAlignment="Top"/>
-        </Grid>
-
-        <!-- Vertical scrolling item list -->
-        
 
         <!-- Details for selected item -->
         <ScrollViewer
             x:Name="itemDetail"
             AutomationProperties.AutomationId="ItemDetailScrollViewer"
-            Grid.Column="1"
             Grid.RowSpan="2"
             Padding="70,0,120,0"
             DataContext="{Binding SelectedItem, ElementName=itemListView}"
             d:DataContext="{Binding AllGroups[0].Items[0], Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"
-            Style="{StaticResource VerticalScrollViewerStyle}" Foreground="#FF20C6D6" Margin="15,67,0,122">
+            Style="{StaticResource VerticalScrollViewerStyle}" Foreground="#FF20C6D6" Margin="0,67,0,125" Grid.ColumnSpan="2">
+            
             <ScrollViewer.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     
                     <GradientStop Color="#FF20C6D6" Offset="1"/>
                 </LinearGradientBrush>
             </ScrollViewer.Background>
-
-            <Grid x:Name="itemDetailGrid" Height="627" Width="372">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="14*"/>
-                    <RowDefinition Height="263*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" Margin="0,-20,-102,0">
-                    <TextBlock x:Name="itemSubtitle" Margin="0,0,0,20" Style="{StaticResource SubtitleTextStyle}"/>
-                    <TextBlock x:Name="itemTitle" Margin="0,-10,-112,0" Text="Algoritmai" Style="{StaticResource SubheaderTextStyle}" Height="64" FontSize="40"/>
+            <Grid>
+                <StackPanel Background="White" Margin="0,26,472,32">
+                    <Grid Height="60" Margin="20,0">
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Technical Details" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="27" Foreground="#FF00C0FF"/>
+                    </Grid>
+                    <StackPanel Margin="0,20">
+                        <TextBlock TextWrapping="Wrap" Text=" Your technical details goes here. Sample follows.." FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Pellentesque elementum ultricies " FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Nulla enim lacus" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Nulla bibendum" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Pellentesque eget neque" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    
+                    
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Suspendisse cursus dolor" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Praesent bibendum malesuada" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Sed sem lorem" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Fusce congue tincidunt rhoncus" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,7,20,0">
+                        <Image Height="5" Width="7" Source="Assets/Images/Arrow.png"/>
+                        <TextBlock TextWrapping="Wrap" Text="Aenean molestie imperdiet" FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                    </StackPanel>
                 </StackPanel>
-                <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="11,21,11,-22" Style="{StaticResource BodyTextStyle}" RenderTransformOrigin="0.996,0.542" Grid.RowSpan="2">
-                	<Run Text="Burbulo rikiavimo metodas – vienas iš paprastų, bet nelabai efektyvių rikiavimo algoritmų. Algoritmo principas – nuosekliai iš eilės peržiūrėti gretimų elementų poras, prireikus elementus sukeisti, perkeliant mažesnį arčiau pradžios. Tokiu būdu per pirmą iteraciją mažiausias elementas perkeliamas į pirmą poziciją, vėliau tas pats principas taikomas posekiui be pirmo elemento ir t. t."/>
-                	<LineBreak/>
-                	<Run/>
-                	<LineBreak/>
-                	<Run Text="Algoritmo veikimo principas primena virimo procesą, kai oro burbulai kyla į paviršių, dėl to jis ir vadinamas burbulo metodu."/>
-                	<LineBreak/>
-                	<Run/>
-                	<LineBreak/>
-                	<Run Text="Burbulo algoritmas N elementų masyvo rikiavimui naudoja apie N²/2 lyginimų ir N²/2 keitimų vietomis, tiek laukiamu, tiek ir blogiausiu atveju. Algoritmas nenaudoja papildomos atminties."/>
-                </TextBlock>
+                <StackPanel Background="White" Width="443" HorizontalAlignment="Right" Margin="0" RenderTransformOrigin="1,0.5" >
+                <Grid Height="60" Margin="20,0,90,0">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Product Details" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="27" Foreground="#FF00C0FF"/>
+                </Grid>
+                <StackPanel Margin="0,20">
+                    <TextBlock TextWrapping="Wrap" Text="Your product details goes here. Sample as follows.." FontFamily="Segoe UI" FontSize="15" Foreground="Black" Margin="10,0,0,0"/>
+                </StackPanel>
+                <StackPanel Margin="20,0,20,15">
+                    <TextBlock TextWrapping="Wrap" Text="Product Dimensions:" FontFamily="Segoe UI" FontSize="15" Foreground="Black" FontWeight="SemiBold"/>
+                    <TextBlock TextWrapping="Wrap" Text="30.7 x 4.4 x 19.8 inches ; 19.9 pounds" FontFamily="Segoe UI" FontSize="15" FontWeight="Light" Foreground="#FF6B6B6B" />
+                </StackPanel>
+                <StackPanel Margin="20,0,20,15">
+                    <TextBlock TextWrapping="Wrap" Text="Shipping Weight:" FontFamily="Segoe UI" FontSize="15" Foreground="Black" FontWeight="SemiBold"/>
+                    <TextBlock TextWrapping="Wrap" FontFamily="Segoe UI" FontSize="15" FontWeight="Light" Foreground="#FF727272" >
+        				<!--<Run Text="("/>
+        					<Run Foreground="#FFDC5555" FontWeight="SemiBold" Text="View shipping rates and policies"/>
+        					<Run Text=")"/>-->
+        				<Run Text="27 pounds "/>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Margin="20,0,20,15">
+                    <TextBlock TextWrapping="Wrap" Text="Shipping:" FontFamily="Segoe UI" FontSize="15" Foreground="Black" FontWeight="SemiBold"/>
+                    <TextBlock TextWrapping="Wrap" Text="Currently, item can be shipped only within the U.S." FontFamily="Segoe UI" FontSize="15" FontWeight="Light" Foreground="#FF6B6B6B" />
+                </StackPanel>
+            </StackPanel>
             </Grid>
+
         </ScrollViewer>
-        <TextBox TextAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Pavyzdys:&#xD;&#xA;void Burbulas(int mas[], int n)&#xD;&#xA;{ &#xD;&#xA; int i, j, laik;&#xD;&#xA; for(j = 0; j &lt; n; j++)&#xD;&#xA; for(i = 0; i &lt; n - 1; i++)&#xD;&#xA; if(mas[i] &gt; mas[i+1])&#xD;&#xA; {&#xD;&#xA; laik = mas[i];&#xD;&#xA; mas[i] = mas[i+1];&#xD;&#xA; mas[i+1] = laik;    &#xD;&#xA; }  &#xD;&#xA;}" FontFamily="Arial Black" FontWeight="Bold" FontSize="20" Margin="10,0,0,122" TextChanged="TextBox_TextChanged_1" BorderThickness="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="783">
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                   
-                    <GradientStop Color="#FF20C6D6" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-            <TextBox.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                </LinearGradientBrush>
-            </TextBox.Foreground>
-        </TextBox>
+
 
         <VisualStateManager.VisualStateGroups>
 

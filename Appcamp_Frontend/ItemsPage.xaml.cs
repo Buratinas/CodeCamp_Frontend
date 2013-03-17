@@ -72,7 +72,7 @@ namespace Appcamp_Frontend
             dataProvider.setGroup(group);
             //httpRequest to fetch all data
             //httpRequest("titles");
-            dataProvider.httpRequest("something");
+            dataProvider.httpRequest("titles&tutorials");
             
             var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             

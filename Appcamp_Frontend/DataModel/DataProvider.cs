@@ -61,20 +61,23 @@ namespace Appcamp_Frontend.DataModel
 
         public static void readXmlNode(XDocument oDoc)
         {
-            XElement[] Elements = oDoc.Descendants("story").ToArray();
+            XElement[] Elements = oDoc.Descendants("Titles").ToArray();
             string uid ,title, subtitle, imagepath, description;
             foreach (XElement xe in Elements)
             {
                 // TODO: add check to see if uid is actualy unique
                 uid = xe.Element("uid").Value.ToString();
+                if (SampleDataSource.GetGroup(uid) != null) continue;
                 title = xe.Element("title").Value.ToString();
                 subtitle = xe.Element("subtitle").Value.ToString();
                 imagepath = xe.Element("image").Value.ToString();
                 description = xe.Element("description").Value.ToString();
                 var group = new SampleDataGroup(uid, title, subtitle, imagepath, description);
                 //this.setGroup(group);
+                
                 SampleDataSource.setGroup(group);
             }
+
         }
         //var group1 = dataProvider.getGroup(1);
         /*

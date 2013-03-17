@@ -10,6 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
 
     <Page.Resources>
 
@@ -25,7 +26,9 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid>
+       
+
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -44,7 +47,11 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick"/>
+            ItemClick="ItemView_ItemClick" Margin="-1,0,1,0" SelectionChanged="itemGridView_SelectionChanged">
+            <GridView.Background>
+                <ImageBrush ImageSource="Assets/bg.png"/>
+            </GridView.Background>
+        </GridView>
 
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
@@ -83,9 +90,7 @@
                 <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
                 <VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
+                        
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Padding">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="96,136,86,56"/>
                         </ObjectAnimationUsingKeyFrames>

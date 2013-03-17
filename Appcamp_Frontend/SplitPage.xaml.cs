@@ -51,7 +51,7 @@ namespace Appcamp_Frontend
 
             if (pageState == null)
             {
-                this.itemListView.SelectedItem = null;
+               
                 // When this is a new page, select the first item automatically unless logical page
                 // navigation is being used (see the logical page navigation #region below.)
                 if (!this.UsingLogicalPageNavigation() && this.itemsViewSource.View != null)
@@ -136,13 +136,13 @@ namespace Appcamp_Frontend
         /// <param name="e">Event data that describes how the back button was clicked.</param>
         protected override void GoBack(object sender, RoutedEventArgs e)
         {
-            if (this.UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
+            if (this.UsingLogicalPageNavigation() )
             {
                 // When logical page navigation is in effect and there's a selected item that
                 // item's details are currently displayed.  Clearing the selection will return
                 // to the item list.  From the user's point of view this is a logical backward
                 // navigation.
-                this.itemListView.SelectedItem = null;
+               
             }
             else
             {
@@ -163,7 +163,7 @@ namespace Appcamp_Frontend
         protected override string DetermineVisualState(ApplicationViewState viewState)
         {
             // Update the back button's enabled state when the view state changes
-            var logicalPageBack = this.UsingLogicalPageNavigation(viewState) && this.itemListView.SelectedItem != null;
+            var logicalPageBack = this.UsingLogicalPageNavigation(viewState) ;
             var physicalPageBack = this.Frame != null && this.Frame.CanGoBack;
             this.DefaultViewModel["CanGoBack"] = logicalPageBack || physicalPageBack;
 
@@ -186,5 +186,10 @@ namespace Appcamp_Frontend
         }
 
         #endregion
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

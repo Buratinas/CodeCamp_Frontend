@@ -123,5 +123,10 @@ namespace Appcamp_Frontend
             var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(SplitPage), groupId);
         }
+
+        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

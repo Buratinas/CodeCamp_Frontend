@@ -1645,11 +1645,19 @@
     <DataTemplate x:Key="Standard250x250ItemTemplate">
         <Grid HorizontalAlignment="Left" Width="250" Height="250">
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                <Viewbox>
+                    <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}" Height="250" Width="250"/>
+                </Viewbox>
             </Border>
-            <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+            <StackPanel VerticalAlignment="Bottom" Height="115">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                       
+                        <GradientStop Color="#FF20C6D6" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="86" Margin="15,0,37,0" RenderTransformOrigin="0.473,0.467"/>
+                
             </StackPanel>
         </Grid>
     </DataTemplate>
